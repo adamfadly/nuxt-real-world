@@ -1,14 +1,16 @@
 <template>
-  <div class="container flex items-center justify-center margin-0 w-full">
-    <h1 class="font-bold text-2xl">Events</h1>
+  <div class="flex items-center justify-center">
+      <h1 class="font-bold text-2xl">Create an Event</h1>
   </div>
 </template>
 
 <script>
+import NavBar from '../../components/NavBar.vue'
 export default {
+  components: { NavBar },
   head(){
     return{
-    title: 'Learn nuxt in Hurry',
+    title: 'Yolo',
     meta: [
       { 
         hid: 'description',
@@ -16,10 +18,12 @@ export default {
         content: 'you can create a new event in your neighborhood'
       }
     ]
+    }
   }
-  }
-};
+
+}
 </script>
 
 <style>
+
 </style>
