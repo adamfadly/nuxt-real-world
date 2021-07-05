@@ -8,7 +8,7 @@
   export default {
       head(){
     return{
-    title: "event "+ this.id,
+    title: "event  "+ this.id,
     meta: [
       { 
         hid: 'description',
