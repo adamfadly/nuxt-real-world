@@ -21,19 +21,22 @@ export default {
         ]
       }
   },
- asyncData(context, error){
-   return context.$axios.get('http://localhost:3000/events').then(response => {
-     return {
-       events: response.data
-     }
-   }).catch(e =>{
-     error({
-       statusCode: 503,
-       message:'Unable to fetch event at this time, please try again letter'
-     })
-   })
- }
-};
+
+  async asyncData({ $axios, error }) {
+        try {
+          const { data } = await $axios.get('http://localhost:3000/events')
+          return {
+            events: data
+          }
+        } catch (e) {
+          error({
+            statusCode: 503,
+            message: 'Unable to fetch events events at this time'
+          })
+        }
+      },
+}
+
 </script>
 
 <style>
