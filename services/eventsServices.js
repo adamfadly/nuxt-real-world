@@ -15,3 +15,8 @@ export const fetchEvents = async () => {
   let events = await apiClient.get('/events')
   return events
 }
+
+export const fetchEvent = async (id) => {
+  let event = await apiClient.get(`/events/${id}`)
+  return event
+}

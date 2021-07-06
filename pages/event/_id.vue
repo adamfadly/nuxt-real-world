@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {fetchEvent} from '../../services/eventsServices';
   export default {
     head(){
       return{
@@ -23,7 +24,7 @@
     async asyncData({ $axios, error, params }) {
       console.log(params)
       try {
-        const { data } = await $axios.get(`http://localhost:3000/events/${params.id}`)
+        const { data } = await fetchEvent(params.id)
         return {
           event: data
         }
