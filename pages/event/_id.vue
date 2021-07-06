@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {fetchEvent} from '../../services/eventsServices';
+import {mapState} from "vuex"
   export default {
     head(){
       return{
@@ -21,20 +21,20 @@ import {fetchEvent} from '../../services/eventsServices';
       }
     },
 
-    async asyncData({ $axios, error, params }) {
-      console.log(params)
+    async fetch({ store, params, error })  {
+      let id = params.id
       try {
-        const { data } = await fetchEvent(params.id)
-        return {
-          event: data
-        }
+        await store.dispatch('events/getEvent', id)
       } catch (e) {
         error({
           statusCode: 503,
-          message: 'Unable to fetch event #' + params.id
+          message: 'Unable to fetch event #' + id
         })
       }
     },
+    computed: mapState({
+        event: state => state.events.event
+      })
   }
 </script>
 

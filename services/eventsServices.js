@@ -13,10 +13,11 @@ const apiClient = axios.create({
 
 export const fetchEvents = async () => {
   let events = await apiClient.get('/events')
-  return events
+  return events.data
 }
 
 export const fetchEvent = async (id) => {
   let event = await apiClient.get(`/events/${id}`)
-  return event
+  console.log(event)
+  return event.data
 }

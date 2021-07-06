@@ -7,7 +7,7 @@
 
 <script>
 import EventCard from '../components/EventCard.vue';
-import {fetchEvents} from "../services/eventsServices"
+import {mapState} from "vuex"
 export default {
   components: { EventCard },
   head(){
@@ -24,20 +24,22 @@ export default {
   },
 
 
-  async asyncData({ error }) {
-        try {
-          const { data } = await fetchEvents()
-          return {
-            events: data
-          }
-        } catch (e) {
-          error({
-            statusCode: 503,
-            message: 'Unable to fetch events events at this time'
-          })
-        }
-      },
+  async fetch({ store, error }) {
+    try {
+      await store.dispatch("events/getEvents")
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch events events at this time'
+      })
+    }
+  },
+
+  computed: mapState({
+    events: state => state.events.events
+  })
 }
+
 
 </script>
 
